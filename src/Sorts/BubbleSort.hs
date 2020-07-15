@@ -14,9 +14,8 @@ bubbleSort lst = if bpassed == lst then lst
 bubblePass :: (Ord a) => [a] -> [a]
 bubblePass [] = [] -- Empty list is empty.
 bubblePass [x] = [x] -- Singleton list is always trivially sorted.
-bubblePass (x1:x2:xs) = if x1 > x2
-                        then [x2] ++ (bubblePass ([x1] ++ xs))
-                        else [x1] ++ (bubblePass ([x2] ++ xs))
+bubblePass (x1:x2:xs) | x1 > x2   = x2 : (bubblePass (x1:xs))
+                      | otherwise = x1 : (bubblePass (x2:xs))
 
 main = do
     putStrLn $ "Unsorted: " ++ show listToSort
